@@ -27,6 +27,8 @@ if (bytes.length > LIMIT) {
 }
 
 const PNG_SIGNATURE = [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a];
+// A PNG always starts with these eight bytes; checking them catches a
+// file that was cut short or saved in another format by mistake.
 for (let i = 0; i < PNG_SIGNATURE.length; i++) {
   if (bytes[i] !== PNG_SIGNATURE[i]) {
     throw new Error("entry.png is not a PNG file");
